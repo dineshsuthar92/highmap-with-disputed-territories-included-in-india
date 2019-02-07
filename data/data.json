@@ -1,0 +1,26 @@
+[
+  {
+    "name" : "London",
+    "lat" : 51.507222,
+    "lon" : 0.1275,
+    "deposited" : "5"
+  },
+  {
+    "name" : "Moscow",
+    "lat" : 55.7500,
+    "lon" : 37.6167,
+    "deposited" : "10"
+  },
+  {
+  "name" : "Beijing",
+  "lat" : 39.9167,
+  "lon" : 116.3833,
+  "deposited" : "3"
+  },
+  {
+    "name" : "AAAMCHI VASAI",
+    "lat" : 19.3919,
+    "lon" : 72.8397,
+    "deposited" : "50"
+  }
+]

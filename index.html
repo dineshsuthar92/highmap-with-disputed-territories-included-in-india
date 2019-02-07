@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Highmap</title>
+</head>
+<body>
+<div id="container" style="height: 500px; min-width: 350px; max-width: 800px; margin: 0 auto;"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+
+<script>
+    var map = $.getJSON('./data/world-map.geojson');
+    var data = $.getJSON('./data/data.json');
+
+    Promise.all([map,data]).then(function (values) {
+        var mapData = values[0];
+        var data = values[1];
+
+        $('#container').highcharts('Map',{
+            legend:{
+                enabled:false,
+            },
+            title:{
+                text:'World Map'
+            },
+            mapNavigation: {
+                enabled:true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+            series:[
+                {
+                    name:"Countries",
+                    mapData:mapData,
+                    color: '#e0702b',
+                    enableMouseTracking: false
+                },
+                {
+                    name:"Coin Deposited [BY_DEFAULT YEAR]",
+                    type: 'mapbubble',
+                    color: '#FF0088',
+                    joinBy: ['deposited'],
+                    minSize: 4,
+                    maxSize: '12%',
+                    data:data,
+                    tooltip: {
+                        pointFormat: '{point.deposited}: [BTC]'
+                    }
+                }
+            ]
+        });
+    });
+</script>
+</body>
+</html>
